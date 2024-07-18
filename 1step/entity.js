@@ -9,28 +9,37 @@ function arr(num) {
     }
     return a;
 }
+
 class entity {
-    constructor(x,y,b,d) {
+    constructor(x,y,chrom,color) {
         this.x = x;
         this.y = y;
-        this.radius = 8;
-        this.b = birth_rate ;
-        this.barr = arr(this.b);
-        this.d = death_rate;
-        this.darr = arr(this.d);
+        this.raplicate = 8;
+        this.radius = 10;
         this.alive = false;
-        this.timealive =0;
-        this.acolor= 255;
-        this.bcolor=0;
-        this.ccolor=0;
-        this.col=color(0, 0, 0);
+        this.timealive = 0;
+        this.chrom = chrom;
+        this.color = color;
     }
     show() {
-        noStroke();
-        this.col=color(this.acolor, this.bcolor, this.ccolor);
-        fill(this.col);
-        circle(this.x,this.y,this.radius);
+        if(this.alive){
+            noStroke();
+            fill(this.color);
+            circle(this.x,this.y,this.radius);
+        }
     }
+    age(){
+        if(this.alive){
+            this.timealive += 1;
+            this.radius += 0.5;
+        }
+    }
+    die(){
+        if(this.alive){
+            this.alive = false;
+        }
+    }
+    
 }
 
 // class food {
