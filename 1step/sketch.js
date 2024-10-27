@@ -14,6 +14,7 @@ function setup() {
 
 function draw() {
     background(100);
+    console.log(entities)
     text("Alive: " + String(births - deaths), 30, 40);
     text("Births: " + String(births), 30, 60);
     text("Deaths: " + String(deaths), 30, 80);
@@ -32,7 +33,8 @@ function draw() {
 
         // Replicate with a chance based on the replicate rate
         if (actual.alive && random(100) <= actual.replicate) {
-            let offspring = new entity(random(1460), random(680), actual.chrom);
+            let a = JSON.parse(JSON.stringify(actual.chrom)); // it copys the value of "actual chrom" in "a" and "a" this way is not just a reference to "actual chrom"
+            let offspring = new entity(random(1460), random(680), a);
             mutation(offspring.chrom);
             entities.push(offspring);
             births += 1;
