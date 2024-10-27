@@ -18,7 +18,7 @@ class entity {
         this.y = y;
         this.alive = true;
         this.timealive = 0; 
-        this.chrom = chrom;
+        this.chrom = JSON.parse(JSON.stringify(chrom));
         this.color = this.chrom[0]; //express color as an array and turn it into hex 
         this.radius = this.chrom[1];
         this.v_radius = this.chrom[2];

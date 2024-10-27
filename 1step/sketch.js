@@ -33,8 +33,7 @@ function draw() {
 
         // Replicate with a chance based on the replicate rate
         if (actual.alive && random(100) <= actual.replicate) {
-            let a = JSON.parse(JSON.stringify(actual.chrom)); // it copys the value of "actual chrom" in "a" and "a" this way is not just a reference to "actual chrom"
-            let offspring = new entity(random(1460), random(680), a);
+            let offspring = new entity(random(1460), random(680), actual.chrom);
             mutation(offspring.chrom);
             entities.push(offspring);
             births += 1;
