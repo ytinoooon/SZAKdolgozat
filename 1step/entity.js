@@ -1,23 +1,23 @@
-function arr(num) {
-    var a = [];
-    for(let i = 0;i < 100;i++) {
-        if(i < num) {
-            a[i] = true;
-        } else { 
-            a[i] = false;
-        }
-    }
-    return a;
-}
-// chrom tomb [[red,blue,green],radius,v_radius,speed,longevaty,replicate]
-                  
 
+function mutation(arr) {
+    arr[0][0] = random(255);
+    arr[0][1] = random(255);
+    arr[0][2] = random(255);
+    arr[1] = random(10, 30); // limit radius range
+    arr[2] = random(10, 30); // limit v_radius range
+    arr[3] = random(1, 10);  // limit speed range
+    arr[4] = random(10, 30); // limit longevaty range
+    arr[5] = random(1, 10);  // limit replicate rate range
+}
+
+// chrom tomb [[red,blue,green],radius,v_radius,speed,longevaty,replicate]
 class entity {
     constructor(x,y,chrom) {
+        this.id = -1;
         this.x = x;
         this.y = y;
-        this.alive = false;
-        this.time_alive = 0; 
+        this.alive = true;
+        this.timealive = 0; 
         this.chrom = chrom;
         this.color = this.chrom[0]; //express color as an array and turn it into hex 
         this.radius = this.chrom[1];
@@ -29,17 +29,13 @@ class entity {
     show() {
         if(this.alive){
             noStroke();
-            fill(this.color);
+            fill(this.color[0],this.color[1],this.color[2]);
             circle(this.x,this.y,this.radius);
         }
     }
-    fed(){ 
-        timealive -= 1;
-    }
     age(){
         if(this.alive){
-            this.timealive += 1;
-            this.radius += 0.5;
+            this.timealive+= 1;
         }
     }
     die(){
@@ -47,18 +43,17 @@ class entity {
             this.alive = false;
         }
     }
-    
 }
 
-// class food {
-//     constructor(x,y) {
-//         this.x = x;
-//         this.y = y;
-//         this.r = 6;
-//     }
-//     show() {
-//         noStroke();
-//         fill(color(300,170,137))
-//         circle(this.x,this.y,this.r);
-//     }
-// }
+class food {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.r = 6;
+    }
+    show() {
+        noStroke();
+        fill(color(300,170,137))
+        circle(this.x,this.y,this.r);
+    }
+}
