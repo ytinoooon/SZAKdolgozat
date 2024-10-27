@@ -1,59 +1,47 @@
 let entities = [];
-let orangealive = 0;
 let births = 0;
 let deaths = 0;
-let birth_rate = 100;
-function sign(x) {
-    return x === 0 ? 0 : x > 0 ? 1 : -1;
-}
+
 function setup() {
-    createCanvas(1470,690);
+    createCanvas(1470, 690);
     frameRate(5);
-    for(let i = 0; i<5;i++){
-        let k = random(i)*2;
-        let x = 400 * pow(abs(cos(k)), 2/10) * sign(cos(k))+500;
-        let y = 220 * pow(abs(sin(k)), 2/10) * sign(sin(k))+250;
-        console.log(x,y);
-        entities[i] = new entity(x,y,[5,5,5,5,5,5],"lightgreen");
-        entities[i].alive = true;
-        births += 1; 
+    for (let i = 0; i < 10; i++) {
+        // chrom tomb [[red, blue, green], radius, v_radius, speed, longevaty, replicate]
+        entities.push(new entity(random(1450), random(670), [[255, 150, 0], 30, 15, 3, 20, 5]));
+        births += 1;
     }
 }
 
 function draw() {
     background(100);
-    text("Alive: "+String(births-deaths), 30, 40); 
-    text("Births: "+String(births), 30, 60); 
-    text("Deaths: "+String(deaths), 30, 80); 
-    // text("OrangeAlive: "+String(orangealive), 30, 100); 
+    text("Alive: " + String(births - deaths), 30, 40);
+    text("Births: " + String(births), 30, 60);
+    text("Deaths: " + String(deaths), 30, 80);
 
+    // Loop through entities
+    for (let i = entities.length - 1; i >= 0; i--) {
+        let actual = entities[i];
+        actual.show();
+        actual.age();
 
-    for(let i = 0; i < entities.length; i++){
-        entities[i].show();
-        entities[i].age();
-        if(entities[i].timealive > random(15) && entities[i].alive){
-            entities[i].die();
+        // Die if timealive exceeds longevaty
+        if (actual.timealive > actual.longevaty && actual.alive) {
+            actual.die();
             deaths += 1;
-            if(entities[i].color == "orange"){
-                orangealive =- 1;
-            }
         }
-        if(entities[i].alive && random(arr(entities[i].raplicate))){
-            entities.push(new entity(random(1460),random(680),entities[i].chrom,"orange"));
-            entities[entities.length-1].alive = true;
-            births += 1;
-            orangealive += 1; 
-        }
-    }
-    if(random(arr(birth_rate))){
-        entities.push(new entity(random(1460),random(680),[5,5,5,5,5,5],"lightgreen"));
-        entities[entities.length-1].alive = true;
-        births += 1;
 
+        // Replicate with a chance based on the replicate rate
+        if (actual.alive && random(100) <= actual.replicate) {
+            let offspring = new entity(random(1460), random(680), actual.chrom);
+            mutation(offspring.chrom);
+            entities.push(offspring);
+            births += 1;
+        }
+
+        // Remove dead entities
+        if (!actual.alive) {
+            entities.splice(i, 1); // remove the entity at index i
+        }
     }
-    for(let i = 0; i<entities.length;i++){
-        if(!entities[i].alive){
-            let spliced = entities.splice(i, 1);
-        }    
-    }
- }
+}
+
