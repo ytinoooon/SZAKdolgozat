@@ -1,14 +1,14 @@
 function mutation(arr) {
-    arr[0][0] = random(255);
-    arr[0][1] = random(255);
-    arr[0][2] = random(255);
-    arr[1] = random(10, 50); // limit radius range
-    arr[2] = random(10, 50); // limit v_radius range
-    arr[3] = random(1, 5);  // limit speed range
-    arr[4] = random(10, 100); // limit longevaty range
-    arr[5] = random(1, 5);  // limit replicate rate range
+    arr[0][0] = arr[0][0]+random(-10, 10);
+    arr[0][1] = arr[0][1]+random(-10, 10);
+    arr[0][2] = arr[0][2]+random(-10, 10);
+    arr[1] = arr[1]+random(-2, 2); // limit radius range
+    arr[2] = arr[2]+random(-3, 3); // limit v_radius range
+    arr[3] = arr[3]+random(-3, 3);  // limit speed range
+    arr[4] = arr[4]; // limit longevaty range
+    arr[5] = arr[5];  // limit replicate rate range
 }
-const getSign = (num) => (num > 5 ? -1 : num < 5 ? 1 : 0);
+
 // chrom tomb [[red,blue,green],radius,v_radius,speed,longevaty,replicate]
 class entity {
     constructor(x,y,chrom) {
@@ -42,11 +42,6 @@ class entity {
             this.alive = false;
         }
     }
-    move(num1,num2) {
-        this.x = this.x + ((this.speed)*getSign(num1));
-        this.y = this.y +((this.speed)*getSign(num2)); 
-    }
-    
 }
 
 class food {
@@ -54,7 +49,6 @@ class food {
         this.x = x;
         this.y = y;
         this.r = 6;
-        this.v_r = 15
     }
     show() {
         noStroke();
