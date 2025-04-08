@@ -8,6 +8,30 @@ function mutation(arr) {
     arr[4] = constrain(arr[4] + random(-10, 10), 20, 300);
     // arr[5] = constrain(arr[5] + random(-0.5, 0.5), 0, 5);
 }
+function crossover(chrom1, chrom2) {
+    let new_chrom = [];
+
+    // Color blending (average)
+    let color1 = chrom1[0];
+    let color2 = chrom2[0];
+    let new_color = [
+        (color1[0] + color2[0]) / 2,
+        (color1[1] + color2[1]) / 2,
+        (color1[2] + color2[2]) / 2
+    ];
+
+    // Other traits: randomly pick one parent's gene or average
+    new_chrom.push(new_color);
+    for (let i = 1; i < chrom1.length; i++) {
+        if (Math.random() < 0.5) {
+            new_chrom.push((chrom1[i] + chrom2[i]) / 2);  // or random([chrom1[i], chrom2[i]]) for more diversity
+        } else {
+            new_chrom.push(random([chrom1[i], chrom2[i]]));
+        }
+    }
+    return new_chrom;
+}
+
 
 class entity {
     constructor(x, y, chrom) {
@@ -23,6 +47,7 @@ class entity {
         this.longevaty = this.chrom[4];
         this.replicate = this.chrom[5];
         this.hungry = 0;
+        this.cooldown = 0;
     }
 
     show() {
