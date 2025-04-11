@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Evolution | EvoSim</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/simulations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="simulation-header">
+        <div class="header-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Simulations
+            </a>
+            <h1>Basic Evolution Simulation</h1>
+            <div class="simulation-controls">
+                <button id="sim-speed"><i class="fas fa-tachometer-alt"></i> Speed</button>
+                <button id="sim-pause"><i class="fas fa-pause"></i> Pause</button>
+                <button id="sim-reset"><i class="fas fa-redo"></i> Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="simulation-main">
+        <section class="simulation-container">
+            <div class="simulation-view">
+                <div id="simulation-canvas"></div>
+                <div class="simulation-sidebar">
+                    <div class="parameter-controls">
+                        <h3>Simulation Parameters</h3>
+                        
+                        <div class="parameter-group">
+                            <label for="food-rate">Food Spawn Rate</label>
+                            <input type="range" id="food-rate" min="1" max="10" value="5">
+                            <span id="food-rate-value">5</span>
+                        </div>
+                        
+                        <div class="parameter-group">
+                            <label for="mutation-rate">Mutation Rate</label>
+                            <input type="range" id="mutation-rate" min="1" max="10" value="5">
+                            <span id="mutation-rate-value">5</span>
+                        </div>
+                        
+                        <div class="parameter-group">
+                            <label for="initial-pop">Initial Population</label>
+                            <input type="range" id="initial-pop" min="5" max="50" value="15">
+                            <span id="initial-pop-value">15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="real-time-stats">
+                        <h3>Population Statistics</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">Current Population:</span>
+                            <span class="stat-value" id="current-pop">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Generations:</span>
+                            <span class="stat-value" id="generations">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Size:</span>
+                            <span class="stat-value" id="avg-size">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Speed:</span>
+                            <span class="stat-value" id="avg-speed">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-visualization">
+                <div class="chart-container">
+                    <canvas id="population-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="traits-chart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section class="simulation-docs">
+            <article class="doc-section">
+                <h2>About This Simulation</h2>
+                <p>This basic evolution simulation demonstrates how simple organisms evolve through natural selection. Each entity has a chromosome that determines its traits including color, size, speed, vision range, longevity, and reproduction rate.</p>
+                
+                <h3>Key Mechanisms</h3>
+                <div class="mechanism-cards">
+                    <div class="mechanism-card">
+                        <div class="mechanism-icon"><i class="fas fa-random"></i></div>
+                        <h4>Mutation</h4>
+                        <p>Random changes in offspring traits create genetic diversity.</p>
+                    </div>
+                    <div class="mechanism-card">
+                        <div class="mechanism-icon"><i class="fas fa-utensils"></i></div>
+                        <h4>Selection Pressure</h4>
+                        <p>Limited food resources create competition for survival.</p>
+                    </div>
+                    <div class="mechanism-card">
+                        <div class="mechanism-icon"><i class="fas fa-baby"></i></div>
+                        <h4>Reproduction</h4>
+                        <p>Successful organisms pass traits to their offspring.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="doc-section">
+                <h2>Educational Insights</h2>
+                <p>This simulation illustrates several fundamental concepts in evolutionary biology:</p>
+                
+                <div class="insight-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="fitness">Fitness</button>
+                        <button class="tab-button" data-tab="adaptation">Adaptation</button>
+                        <button class="tab-button" data-tab="speciation">Speciation</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="fitness">
+                        <p>Fitness refers to an organism's ability to survive and reproduce in its environment. In this simulation, fitness is determined by how well an organism's traits match the environmental conditions.</p>
+                        <p>Notice how certain traits become more common over time as they prove advantageous for survival and reproduction.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="adaptation">
+                        <p>Adaptation is the process by which populations become better suited to their environment over generations.</p>
+                        <p>Try changing the food distribution pattern and observe how the population adapts with different traits becoming dominant.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="speciation">
+                        <p>Speciation occurs when populations diverge to form distinct species. While this simulation doesn't show full speciation, you can observe the beginnings of sub-populations with different trait combinations.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/simulation1.js"></script>
+    <script src="assets/js/chart-config.js"></script>
+</body>
+</html>

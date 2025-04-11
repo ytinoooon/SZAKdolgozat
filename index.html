@@ -1,16 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
-    <script src="./1step/entity.js"></script>
-    <link rel="stylesheet" type="text/css" href="./1step/style.css">
-    <meta charset="utf-8" />
-    
-  </head ss>
-  <body>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoSim | Evolutionary Simulation Platform</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>EvoSim</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#simulations">Simulations</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><button id="theme-toggle"><i class="fas fa-moon"></i></button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Explore the Power of Evolution</h2>
+                <p>Interactive simulations demonstrating natural selection, genetic algorithms, and evolutionary processes</p>
+                <a href="#simulations" class="cta-button">View Simulations</a>
+            </div>
+            <div class="hero-animation" id="hero-canvas"></div>
+        </section>
+
+        <section id="simulations" class="simulations-section">
+            <h2 class="section-title">Our Simulations</h2>
+            <div class="simulation-grid">
+                <div class="sim-card" data-sim="1">
+                    <div class="card-image">
+                        <img src="./images/image.png" alt="Basic Evolution">
+                        <div class="card-overlay">
+                            <h3>Basic Evolution</h3>
+                            <p>Simple organisms evolving through natural selection</p>
+                            <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Repeat for other 4 simulations -->
+                <div class="sim-card" data-sim="2">...</div>
+                <div class="sim-card" data-sim="3">...</div>
+                <div class="sim-card" data-sim="4">...</div>
+                <div class="sim-card" data-sim="5">...</div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <h2 class="section-title">How It Works</h2>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-dna"></i></div>
+                        <h3>Genetic Encoding</h3>
+                        <p>Each organism has a chromosome defining its traits including color, size, speed, and more.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Resource Competition</h3>
+                        <p>Organisms compete for limited food resources to survive and reproduce.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-baby"></i></div>
+                        <h3>Reproduction</h3>
+                        <p>Successful organisms reproduce, passing traits to offspring with mutations.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Evolution</h3>
+                        <p>Over generations, advantageous traits become more common in the population.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2 class="section-title">Key Concepts</h2>
+            <div class="concept-cards">
+                <div class="concept-card">
+                    <h3>Natural Selection</h3>
+                    <p>Organisms with beneficial traits are more likely to survive and reproduce.</p>
+                    <div class="concept-visual" id="selection-visual"></div>
+                </div>
+                <div class="concept-card">
+                    <h3>Genetic Drift</h3>
+                    <p>Random changes in gene frequencies, especially in small populations.</p>
+                    <div class="concept-visual" id="drift-visual"></div>
+                </div>
+                <div class="concept-card">
+                    <h3>Adaptive Radiation</h3>
+                    <p>Diversification of species to fill different ecological niches.</p>
+                    <div class="concept-visual" id="radiation-visual"></div>
+                </div>
+            </div>
+        </section>
     </main>
-    <script src="./1step/sketch.js"></script>
-  </body>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EvoSim</h3>
+                <p>Interactive evolutionary simulations for education and research.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#simulations">Simulations</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 EvoSim Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/hero-animation.js"></script>
+</body>
 </html>
